@@ -1,41 +1,19 @@
 import axios from 'axios';
-import {fromJS} from "immutable";
 
 import {constants} from './index';
 
-const changeList = (data) => ({
-    type: constants.CHANGE_LIST,
-    data: fromJS(data),
-    totalPage: Math.ceil(data.length / 10),
+const changeHomeData = (result) => ({
+    type: constants.CHANGE_HOME_DATA,
+    topicList: result.topicList,
+    articleList: result.articleList,
+    recommendList: result.recommendList,
 });
 
-export const searchFocus = () => ({
-    type: constants.SEARCH_FOCUS,
-});
-
-export const searchBlur = () => ({
-    type: constants.SEARCH_BLUR,
-});
-
-export const getList = () => {
+export const getHomeInfo = () => {
     return (dispatch) => {
-        axios.get('/api/headerList.json').then((res) => {
-            //成功的时候执行
-            const data = res.data;
-            dispatch(changeList(data.data))
-        }).catch(() => {
-            //失败的时候执行
-        });
+        axios.get('./api/home.json').then((res) => {
+            const result = res.data.data;
+            dispatch(changeHomeData(result));
+        })
     }
 };
-
-export const mouseEnter = () => ({
-    type: constants.MOUSE_ENTER,
-});
-export const mouseLeave = () => ({
-    type: constants.MOUSE_LEAVE,
-});
-export const changePage = (page) => ({
-    type: constants.CHANGE_PAGE,
-    page: page,
-});
