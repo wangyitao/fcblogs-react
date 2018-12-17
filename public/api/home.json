@@ -1,0 +1,90 @@
+{
+  "status": 0,
+  "data": [
+    {
+      "id": "1490000006201494",
+      "name": "\u524d\u7aef",
+      "url": "\/channel\/frontend",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/399\/739\/3997397795-5a6edc1c3167f_small",
+      "slug": "frontend"
+    },
+    {
+      "id": "1490000006201495",
+      "name": "\u540e\u7aef",
+      "url": "\/channel\/backend",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/199\/890\/1998904068-5a6edc3e40de1_small",
+      "slug": "backend"
+    },
+    {
+      "id": "1490000016996499",
+      "name": "\u5c0f\u7a0b\u5e8f",
+      "url": "\/channel\/miniprogram",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/111\/583\/1115832955-5bea884928e54_small",
+      "slug": "miniprogram"
+    },
+    {
+      "id": "1490000010688683",
+      "name": "\u4eba\u5de5\u667a\u80fd",
+      "url": "\/channel\/ai",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/194\/030\/1940304143-5a72802e507db_small",
+      "slug": "ai"
+    },
+    {
+      "id": "1490000012722067",
+      "name": "\u533a\u5757\u94fe",
+      "url": "\/channel\/bc",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/950\/262\/950262627-5a7048175cdc9_small",
+      "slug": "bc"
+    },
+    {
+      "id": "1490000006201507",
+      "name": "\u5b89\u5168",
+      "url": "\/channel\/netsec",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/177\/555\/177555825-5a6edd409405a_small",
+      "slug": "netsec"
+    },
+    {
+      "id": "1490000006201502",
+      "name": "Android",
+      "url": "\/channel\/android",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/346\/697\/3466976217-5a6edc9817073_small",
+      "slug": "android"
+    },
+    {
+      "id": "1490000006201496",
+      "name": "iOS",
+      "url": "\/channel\/ios",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/364\/183\/3641835720-5a6edcc072849_small",
+      "slug": "ios"
+    },
+    {
+      "id": "1490000006201510",
+      "name": "\u5de5\u5177",
+      "url": "\/channel\/toolkit",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/619\/301\/619301590-5a6ee7ff8fee2_small",
+      "slug": "toolkit"
+    },
+    {
+      "id": "1490000006201514",
+      "name": "\u7a0b\u5e8f\u5458",
+      "url": "\/channel\/programmer",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/463\/156\/46315654-5a6edd4a8f67e_small",
+      "slug": "programmer"
+    },
+    {
+      "id": "1490000006218048",
+      "name": "\u884c\u4e1a",
+      "url": "\/channel\/industry",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/350\/953\/3509536808-5a6edd577ced0_small",
+      "slug": "industry"
+    },
+    {
+      "id": "1490000006201408",
+      "name": "SF\u5b98\u65b9",
+      "url": "\/channel\/segmentfault",
+      "iconUrl": "https:\/\/avatar-static.segmentfault.com\/472\/461\/472461559-5a6edd61cf1a0_small",
+      "slug": "segmentfault"
+    }
+  ],
+  "message": ""
+}
