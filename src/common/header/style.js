@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import logoPic from '../../statics/忆初logo.png'
 
 export const HeaderWrapper = styled.div`
+    z-index: 1;
     position: relative;
     height: 48px;
     border-bottom: 1px solid #f0f0f0;
@@ -33,7 +34,7 @@ export const NavItem = styled.div`
     padding: 0 15px;
     font-size: 17px;
     color: #333;
-
+    cursor: pointer;
     &.left {
         float: left;
     }
@@ -175,6 +176,7 @@ export const Button = styled.div`
     border-radius: 19px;
     border: 1px solid #ec6149;
     font-size: 14px;
+    cursor: pointer;
     
     &.reg {
         color: #ec6149;
