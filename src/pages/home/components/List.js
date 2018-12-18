@@ -12,27 +12,27 @@ import {
 
 class List extends PureComponent {
     render() {
-        const {list,getMoreList,page} = this.props;
+        const {list, getMoreList, page} = this.props;
         return (
             <Fragment>
                 {
-                    list.map((item,index) => (
-                        <Link to="/detail" key={index}>
-                        <ListItem >
-                            <img className={'list-pic'}
-                                 src={item.get('imgUrl')}
-                                 alt=""/>
-                            <ListInfo>
-                                <h3 className={'title'}>{item.get('title')}</h3>
-                                <p className={'disc'}>
-                                    {item.get('desc')}
-                                </p>
-                            </ListInfo>
-                        </ListItem>
-                    </Link>
+                    list.map((item, index) => (
+                        <Link to={"/detail/" + item.get('id')} key={index}>
+                            <ListItem>
+                                <img className={'list-pic'}
+                                     src={item.get('imgUrl')}
+                                     alt=""/>
+                                <ListInfo>
+                                    <h3 className={'title'}>{item.get('title')}</h3>
+                                    <p className={'disc'}>
+                                        {item.get('desc')}
+                                    </p>
+                                </ListInfo>
+                            </ListItem>
+                        </Link>
                     ))
                 }
-                <LoadMore onClick={()=>getMoreList(page)}>
+                <LoadMore onClick={() => getMoreList(page)}>
                     加载更多
                 </LoadMore>
             </Fragment>
@@ -50,7 +50,7 @@ const myMapStateToProps = (state) => {
 
 const myMapDispatchToProps = (dispatch) => {
     return {
-        getMoreList(page){
+        getMoreList(page) {
             dispatch(actionCreators.getMoreList(page))
         }
     }
