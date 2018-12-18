@@ -33,8 +33,13 @@ class Home extends PureComponent {
                     <Recommend/>
                     <Writer/>
                 </HomeRight>
-                {showScroll ? <BackTop onClick={handleScrollTop}> <i className={'iconfont'}>&#xe61b;</i>
-                </BackTop> : null}
+                {
+                    showScroll
+                        ? <BackTop onClick={handleScrollTop}>
+                            <i className={'iconfont'}>&#xe61b;</i>
+                        </BackTop>
+                        : null
+                }
             </HomeWrapper>
         )
     }
@@ -72,6 +77,5 @@ const myMapDispatchToProps = (dispatch) => {
         },
     }
 };
-
 
 export default connect(myMapStateToProps, myMapDispatchToProps)(Home);

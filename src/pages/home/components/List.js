@@ -1,5 +1,6 @@
 import React, {PureComponent, Fragment} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
 
 import {actionCreators} from '../store'
 
@@ -16,7 +17,8 @@ class List extends PureComponent {
             <Fragment>
                 {
                     list.map((item,index) => (
-                        <ListItem key={index}>
+                        <Link to="/detail" key={index}>
+                        <ListItem >
                             <img className={'list-pic'}
                                  src={item.get('imgUrl')}
                                  alt=""/>
@@ -27,6 +29,7 @@ class List extends PureComponent {
                                 </p>
                             </ListInfo>
                         </ListItem>
+                    </Link>
                     ))
                 }
                 <LoadMore onClick={()=>getMoreList(page)}>
