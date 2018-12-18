@@ -18,6 +18,7 @@ axios 异步发送ajax数据
 
 react-router-dom react中的路由
 
+如果使用PureComponent，则数据必须用immutable来管理
 
 
 

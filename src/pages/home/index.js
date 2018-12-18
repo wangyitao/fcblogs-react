@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 
 import Topic from './components/Topic';
@@ -12,10 +12,12 @@ import {
     HomeWrapper,
     HomeLeft,
     HomeRight,
+    BackTop,
 } from './style'
 
-class Home extends Component {
+class Home extends PureComponent {
     render() {
+        const {showScroll, handleScrollTop} = this.props;
         return (
             <HomeWrapper>
                 <HomeLeft>
@@ -31,26 +33,42 @@ class Home extends Component {
                     <Recommend/>
                     <Writer/>
                 </HomeRight>
+                {showScroll ? <BackTop onClick={handleScrollTop}>返回顶部</BackTop> : null}
             </HomeWrapper>
         )
     }
 
-
     componentDidMount() {
         this.props.changeHomeData();
+        this.bindEvents()
     }
 
+    componentWillMount() {
+        window.removeEventListener('scroll', this.props.changeScrollTopShow)
+    }
+
+    bindEvents() {
+        window.addEventListener('scroll', this.props.changeScrollTopShow)
+    }
 }
 
 const myMapStateToProps = (state) => {
-    return {}
+    return {
+        showScroll: state.getIn(['home', 'showScroll'])
+    }
 };
 
 const myMapDispatchToProps = (dispatch) => {
     return {
         changeHomeData() {
             dispatch(actionCreators.getHomeInfo())
-        }
+        },
+        changeScrollTopShow() {
+            dispatch(actionCreators.toggleTopShow(document.documentElement.scrollTop > 400));
+        },
+        handleScrollTop() {
+            window.scrollTo(0, 0)
+        },
     }
 };
 

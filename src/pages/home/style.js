@@ -92,3 +92,32 @@ export const RecommendItem = styled.div`
     box-sizing: border-box;
     cursor: pointer;
 `;
+
+export const LoadMore = styled.div`
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin: 30px 0;
+    background: #a5a5a5;
+    text-align: center;
+    border-radius: 20px;
+    color： #fff;
+    cursor: pointer;
+`;
+
+export const BackTop = styled.div`
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid #333;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background: #333;
+  }
+`;
