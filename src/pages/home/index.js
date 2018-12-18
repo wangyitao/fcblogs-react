@@ -33,7 +33,8 @@ class Home extends PureComponent {
                     <Recommend/>
                     <Writer/>
                 </HomeRight>
-                {showScroll ? <BackTop onClick={handleScrollTop}>返回顶部</BackTop> : null}
+                {showScroll ? <BackTop onClick={handleScrollTop}> <i className={'iconfont'}>&#xe61b;</i>
+                </BackTop> : null}
             </HomeWrapper>
         )
     }
