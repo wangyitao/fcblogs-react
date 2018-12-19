@@ -1,6 +1,6 @@
 import React,{PureComponent} from 'react';
 
-class Writer extends PureComponent {
+class BackTop extends PureComponent {
     render() {
         return (
             <div>Writer~</div>
@@ -8,4 +8,4 @@ class Writer extends PureComponent {
     }
 }
 
-export default Writer;
+export default BackTop;

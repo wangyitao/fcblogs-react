@@ -39,3 +39,8 @@ export const changePage = (page) => ({
     type: constants.CHANGE_PAGE,
     page: page,
 });
+
+export const active=(active_id)=>({
+    type:constants.CHANGE_ACTIVE_ID,
+    active_id: fromJS(active_id),
+});

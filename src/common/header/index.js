@@ -61,7 +61,7 @@ class Header extends PureComponent {
     };
 
     render() {
-        const {focused, login, logout, list, handleInputFocus, handleInputBlur} = this.props;
+        const {focused, login, logout, active_id, list, handleInputFocus, handleInputBlur, active} = this.props;
         return (
             <HeaderWrapper>
                 <Link to={'/'}>
@@ -69,11 +69,22 @@ class Header extends PureComponent {
                 </Link>
 
                 <Nav>
-                    <NavItem className={'left active'}>首页</NavItem>
-                    <NavItem className={'left'}>问答</NavItem>
+                    <Link to={'/'}>
+                        <NavItem className={active_id === 1 ? 'left active' : 'left'} onClick={() => active(1)}>
+                            首页
+                        </NavItem>
+                    </Link>
+                    <Link to={'/question'}>
+                        <NavItem className={active_id === 2 ? 'left active' : 'left'}
+                                 onClick={() => active(2)}>问答</NavItem>
+                    </Link>
                     {
                         login ? <NavItem className={'right'} onClick={logout}>退出</NavItem>
-                            : <Link to={'/login'}><NavItem className={'right'}>登录</NavItem></Link>
+                            : <Link to={'/login'}>
+                                <NavItem className={active_id === 4 ? 'right active' : 'right'}
+                                         onClick={() => active(4)}>登录
+                                </NavItem>
+                            </Link>
                     }
 
                     <NavItem className={'right'}>
@@ -118,6 +129,8 @@ const myMapStateToProps = (state) => {
         totalPage: state.getIn(['header', 'totalPage']),
         mouseIn: state.getIn(['header', 'mouseIn']),
         login: state.getIn(['login', 'login']),
+        active_id: state.getIn(['header', 'active_id']),
+
     }
 };
 
@@ -148,7 +161,10 @@ const myMapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.changePage(page));
         },
         logout() {
-            dispatch(loginActionCreators.logout())
+            dispatch(loginActionCreators.logout());
+        },
+        active(active_id) {
+            dispatch(actionCreators.active(active_id));
         }
     }
 };

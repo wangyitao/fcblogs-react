@@ -7,7 +7,6 @@ const defaultState = fromJS({
     articleList: [],
     recommendList: [],
     articlePage: 1,
-    showScroll: false,
 });
 
 //创建store
@@ -25,8 +24,6 @@ export default (state = defaultState, action) => {
                     'articlePage': action.nextPage,
                 }
             );
-        case constants.IS_TOGGLE_TOP_SHOW:
-            return state.set('showScroll', action.showScroll);
         default:
             return state;
     }

@@ -6,6 +6,7 @@ export const HeaderWrapper = styled.div`
     position: relative;
     height: 48px;
     border-bottom: 1px solid #f0f0f0;
+    margin: 0 10%;
 `;
 
 export const Logo = styled.div`
@@ -21,12 +22,12 @@ export const Logo = styled.div`
 `;
 
 export const Nav = styled.div`
-    width: 960px;
+    width: auto;
     height: 100%;
-    padding-right: 70px;
-    padding-left: 70px;
+    padding-right: 100px;
+    padding-left: 20px;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin: 0 120px 0 70px;
 `;
 
 export const NavItem = styled.div`
@@ -41,6 +42,10 @@ export const NavItem = styled.div`
     &.right {
         float: right;
         color: #969696;
+        margin-right: 0;
+        display: block;
+        margin-left: 15px;
+        box-sizing: border-box;
     }
     &.active {
         color: #ea6f5a;

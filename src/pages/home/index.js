@@ -12,12 +12,13 @@ import {
     HomeWrapper,
     HomeLeft,
     HomeRight,
-    BackTop,
 } from './style'
+import {
+    BackTopComponent,
+} from "../../common/components/";
 
 class Home extends PureComponent {
     render() {
-        const {showScroll, handleScrollTop} = this.props;
         return (
             <HomeWrapper>
                 <HomeLeft>
@@ -29,51 +30,29 @@ class Home extends PureComponent {
                 </HomeLeft>
 
                 <HomeRight>
-                    right
                     <Recommend/>
                     <Writer/>
                 </HomeRight>
-                {
-                    showScroll
-                        ? <BackTop onClick={handleScrollTop}>
-                            <i className={'iconfont'}>&#xe61b;</i>
-                        </BackTop>
-                        : null
-                }
+                <BackTopComponent/>
             </HomeWrapper>
         )
     }
 
     componentDidMount() {
         this.props.changeHomeData();
-        this.bindEvents()
     }
 
-    componentWillMount() {
-        window.removeEventListener('scroll', this.props.changeScrollTopShow)
-    }
 
-    bindEvents() {
-        window.addEventListener('scroll', this.props.changeScrollTopShow)
-    }
 }
 
 const myMapStateToProps = (state) => {
-    return {
-        showScroll: state.getIn(['home', 'showScroll'])
-    }
+    return {}
 };
 
 const myMapDispatchToProps = (dispatch) => {
     return {
         changeHomeData() {
             dispatch(actionCreators.getHomeInfo())
-        },
-        changeScrollTopShow() {
-            dispatch(actionCreators.toggleTopShow(document.documentElement.scrollTop > 400));
-        },
-        handleScrollTop() {
-            window.scrollTo(0, 0)
         },
     }
 };

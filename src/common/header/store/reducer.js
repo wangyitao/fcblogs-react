@@ -9,6 +9,7 @@ const defaultState = fromJS({
     list: [],
     page: 1,
     totalPage: 1,
+    active_id: 0,
 });
 
 //创建store
@@ -29,6 +30,8 @@ export default (state = defaultState, action) => {
             return state.set('mouseIn', false);
         case constants.CHANGE_PAGE:
             return state.set('page', action.page);
+        case constants.CHANGE_ACTIVE_ID:
+            return state.set('active_id',action.active_id);
         default:
             return state;
     }
