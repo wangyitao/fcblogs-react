@@ -18,5 +18,9 @@ export const BackTop = styled.div`
 `;
 
 export const MdEditorWrapper = styled.div`
-    
+    // .editor-preview-side {
+    //     pre {
+    //         background: #bcbcbc!important;
+    //     }
+    // }
 `;

@@ -3,51 +3,26 @@ import cookie from 'cookie';
 import SimpleMDEEditor from 'yt-simplemde-editor';
 import marked from 'marked';
 import Prism from 'prismjs'; // 这里使用 ~1.14.0 版本，1.15 之后的版本有bug
-import 'prismjs/themes/prism.css';
+import 'prismjs/themes/prism-solarizedlight.css';
 import loadLanguages from 'prismjs/components/index';
 
-import {MdEditorWrapper} from '../style'
+import {
+    MdEditorWrapper,
+} from '../style';
+import {actionCreators} from "../store";
+import connect from "react-redux/es/connect/connect";
 
-loadLanguages([
-    'c',
-    'css',
-    'javascript',
-    'bash',
-    'git',
-    'ini',
-    'java',
-    'json',
-    'less',
-    'markdown',
-    'php',
-    'php-extras',
-    'python',
-    'jsx',
-    'tsx',
-    'scss',
-    'sql',
-    'vim',
-    'yaml',
-]);
+loadLanguages(['css', 'clike', 'javascript', 'abap', 'actionscript', 'ada', 'apacheconf', 'apl', 'applescript', 'arduino', 'arff', 'asciidoc', 'asm6502', 'aspnet', 'autohotkey', 'autoit', 'bash', 'basic', 'batch', 'bison', 'brainfuck', 'bro', 'c', 'csharp', 'cpp', 'coffeescript', 'clojure', 'crystal', 'csp', 'css-extras', 'd', 'dart', 'diff', 'docker', 'eiffel', 'elixir', 'elm', 'erb', 'erlang', 'fsharp', 'flow', 'fortran', 'gedcom', 'gherkin', 'git', 'glsl', 'go', 'graphql', 'groovy', 'haml', 'handlebars', 'haskell', 'haxe', 'http', 'hpkp', 'hsts', 'ichigojam', 'icon', 'inform7', 'ini', 'io', 'j', 'java', 'jolie', 'json', 'julia', 'keyman', 'kotlin', 'latex', 'less', 'liquid', 'lisp', 'livescript', 'lolcode', 'lua', 'makefile', 'markdown', 'markup-templating', 'matlab', 'mel', 'mizar', 'monkey', 'n4js', 'nasm', 'nginx', 'nim', 'nix', 'nsis', 'objectivec', 'ocaml', 'opencl', 'oz', 'parigp', 'parser', 'pascal', 'perl', 'php', 'php-extras', 'plsql', 'powershell', 'processing', 'prolog', 'properties', 'protobuf', 'pug', 'puppet', 'pure', 'python', 'q', 'qore', 'r', 'jsx', 'tsx', 'renpy', 'reason', 'rest', 'rip', 'roboconf', 'ruby', 'rust', 'sas', 'sass', 'scss', 'scala', 'scheme', 'smalltalk', 'smarty', 'sql', 'soy', 'stylus', 'swift', 'tcl', 'textile', 'twig', 'typescript', 'vbnet', 'velocity', 'verilog', 'vhdl', 'vim', 'visual-basic', 'wasm', 'wiki', 'xeora', 'xojo', 'yaml']);
 
 class MdEditor extends PureComponent {
-    state = {
-        value: '',
-    };
 
-    renderMarkdown = text => {
+    renderMarkdown = (text) => {
         const html = marked(text, {
-            renderer: new marked.Renderer(),
-            gfm: true,
-            pedantic: false,
-            sanitize: false,
-            tables: true,
             breaks: true,
-            smartLists: true,
-            smartypants: true,
         });
+
         if (/language-/.test(html)) {
-            const container = document.createElement('div');
+            const container = document.createElement('a');
             container.innerHTML = html;
             Prism.highlightAllUnder(container);
             return container.innerHTML;
@@ -57,13 +32,16 @@ class MdEditor extends PureComponent {
     };
 
     render() {
+        const {changeContent,editorValue} =this.props;
+
+        console.log(editorValue);
         const editorProps = {
-            value: this.state.value,
+            value: editorValue,
             getMdeInstance: simplemde => {
                 this.simplemde = simplemde;
             },
-            onChange: value => {
-                this.setState({value})
+            onChange: (value) => {
+                changeContent(value);
             },
             options: {
                 // see https://github.com/sparksuite/simplemde-markdown-editor#configuration
@@ -75,7 +53,7 @@ class MdEditor extends PureComponent {
                     uniqueId: 'article_content',
                 },
                 renderingConfig: {
-                    // codeSyntaxHighlighting: true,
+                    codeSyntaxHighlighting: true,
                 },
                 previewRender: this.renderMarkdown, // 自定义预览渲染
                 tabSize: 4,
@@ -94,7 +72,6 @@ class MdEditor extends PureComponent {
                     'link',
                     'image',
                     '|',
-                    'preview',
                     'side-by-side',
                     'fullscreen',
                     '|',
@@ -131,6 +108,24 @@ class MdEditor extends PureComponent {
             </MdEditorWrapper>
         )
     }
+
+    componentDidMount() {
+
+    }
 }
 
-export default MdEditor;
+const myMapStateToProps = (state) => {
+    return {
+        editorValue: state.getIn(['component', 'editorValue'])
+    }
+};
+
+const myMapDispatchToProps = (dispatch) => {
+    return {
+        changeContent(value){
+            dispatch(actionCreators.changeContent(value))
+        },
+    }
+};
+
+export default connect(myMapStateToProps, myMapDispatchToProps)(MdEditor);
