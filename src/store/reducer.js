@@ -6,6 +6,7 @@ import {reducer as HomeReducer} from '../pages/home/store'
 import {reducer as DetailReducer} from '../pages/detail/store'
 import {reducer as LoginReducer} from '../pages/login/store'
 import {reducer as QuestionReducer} from '../pages/question/store'
+import {reducer as QuestionDetailReducer} from '../pages/questionDetail/store'
 
 const reducer = combineReducers({
     header: headerReducer,
@@ -13,7 +14,8 @@ const reducer = combineReducers({
     detail: DetailReducer,
     login: LoginReducer,
     question: QuestionReducer,
-    component:ComponentsReducer,
+    component: ComponentsReducer,
+    questionDetail: QuestionDetailReducer,
 });
 
 export default reducer;

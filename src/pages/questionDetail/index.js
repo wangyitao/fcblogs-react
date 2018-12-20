@@ -1,51 +1,68 @@
 import React, {PureComponent} from 'react';
-import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 
-import {actionCreators} from "./store";
-
-import List from './components/List';
-
+import {actionCreators} from './store'
 
 import {
-    QuestionWrapper,
-    QuestionContent,
-    QuestionItem
-
+    QuestionDetailWrapper,
+    QuestionDetailContentWrapper,
+    QuestionDetailTitle,
+    QuestionDetailContent,
+    QuestionContentDesAndAns,
 } from './style';
 
-class Question extends PureComponent {
+class QuestionDetail extends PureComponent {
     render() {
-
+        const {title, description, answer} = this.props;
         return (
-            <QuestionWrapper>
-                <QuestionContent>
-                    <List />
-                </QuestionContent>
+            <QuestionDetailWrapper>
 
-            </QuestionWrapper>
+
+                <QuestionDetailContentWrapper>
+                    <QuestionDetailTitle>
+                        {title}
+                    </QuestionDetailTitle>
+                    <QuestionDetailContent>
+                        <QuestionDetailTitle className={'description'}>
+                            问题描述
+                        </QuestionDetailTitle>
+                        <QuestionContentDesAndAns dangerouslySetInnerHTML={{__html: description}} />
+                    </QuestionDetailContent>
+                    <QuestionDetailContent>
+                        <QuestionDetailTitle className={'answer'}>
+                            答案
+                        </QuestionDetailTitle>
+                        <QuestionContentDesAndAns dangerouslySetInnerHTML={{__html: answer}} />
+                    </QuestionDetailContent>
+
+
+                </QuestionDetailContentWrapper>
+
+
+            </QuestionDetailWrapper>
         )
     }
 
     componentDidMount() {
-        this.props.getQuestionData();
+        this.props.getQuestionDetail(this.props.match.params.id);
     }
 }
 
 
-
 const myMapStateToProps = (state) => {
     return {
-
+        title: state.getIn(['questionDetail', 'title']),
+        description: state.getIn(['questionDetail', 'description']),
+        answer: state.getIn(['questionDetail', 'answer']),
     }
 };
 
 const myMapDispatchToProps = (dispatch) => {
     return {
-        getQuestionData(){
-            dispatch(actionCreators.getQuestionData());
+        getQuestionDetail(id) {
+            dispatch(actionCreators.getQuestionDetail(id))
         }
     }
 };
 
-export default connect(myMapStateToProps, myMapDispatchToProps)(Question);
+export default connect(myMapStateToProps, myMapDispatchToProps)(QuestionDetail);

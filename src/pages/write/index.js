@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 
+import {MdEditor} from '../../common/components'
 
 class Write extends PureComponent {
     render() {
@@ -10,6 +11,9 @@ class Write extends PureComponent {
             return (
                 <div>
                     写文章页面
+                    <MdEditor>
+
+                    </MdEditor>
                 </div>
             )
         } else {

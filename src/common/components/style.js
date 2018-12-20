@@ -16,3 +16,7 @@ export const BackTop = styled.div`
     background: #333;
   }
 `;
+
+export const MdEditorWrapper = styled.div`
+    
+`;

@@ -13,6 +13,7 @@ import Detail from './pages/detail'
 import Login from './pages/login'
 import Write from './pages/write'
 import Question from './pages/question'
+import QuestionDetail from './pages/questionDetail'
 
 class App extends Component {
     render() {
@@ -23,13 +24,13 @@ class App extends Component {
                 <Fragment>
                     <Provider store={store}>
                         <BrowserRouter>
-
                             <Fragment>
                                 <Header/>
                                 <Route path={'/'} exact component={Home}/>
                                 <Route path={'/login'} exact component={Login}/>
                                 <Route path={'/write'} exact component={Write}/>
                                 <Route path={'/question'} exact component={Question}/>
+                                <Route path={'/question/:id'} exact component={QuestionDetail}/>
                                 <Route path={'/detail/:id'} exact component={Detail}/>
                             </Fragment>
                         </BrowserRouter>

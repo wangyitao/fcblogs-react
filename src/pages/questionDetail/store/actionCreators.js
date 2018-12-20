@@ -1,36 +1,25 @@
 import axios from 'axios';
 
 import {constants} from './index';
-import {fromJS} from "immutable";
 
-const changeQuestionData = (result) => ({
-    type: constants.CHANGE_QUESTIONDATA,
-    questions: fromJS(result),
+const changeQuestionDetail = (title, description,answer) => ({
+    type: constants.CHANGE_QUESTION_DETAIL,
+    title: title,
+    description: description,
+    answer: answer,
+
 });
 
-export const  getQuestionData =()=>{
-  return (dispatch)=>{
-      axios.get('/api/questions.json').then((res)=>{
-        const result = res.data.data;
-        dispatch(changeQuestionData(result))
-      })
-  }
-};
-
-
-const getQuestionListData = (list, nextPage) => ({
-    type: constants.GET_QUESTION_LIST_DATA,
-    questions: fromJS(list),
-    nextPage: nextPage,
-});
-
-export const getMoreQuestions = (page) => {
+export const getQuestionDetail = (id) => {
     return (dispatch) => {
-        axios.get('./api/questionList.json?page=' + page).then((res) => {
+        axios.get('/api/questiondetail.json?id=' + id).then((res) => {
             const result = res.data.data;
-            dispatch(getQuestionListData(result, page + 1));
+            dispatch(changeQuestionDetail(result.title, result.description,result.answer));
+        }).catch(()=>{
+
         })
     }
 };
+
 
 

@@ -3,19 +3,19 @@ import {fromJS} from 'immutable';
 import {constants} from './index';
 
 const defaultState = fromJS({
-    questions: [],
-    questionsPage: 1,
+    title: '',
+    description: ``,
+    answer: '',
 });
 
 //创建store
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case constants.CHANGE_QUESTIONDATA:
-            return state.set('questions', action.questions);
-        case constants.GET_QUESTION_LIST_DATA:
+        case constants.CHANGE_QUESTION_DETAIL:
             return state.merge({
-                questions: state.get('questions').concat(action.questions),
-                questionsPage: action.nextPage,
+                title: action.title,
+                description: action.description,
+                answer: action.answer,
             });
         default:
             return state;

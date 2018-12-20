@@ -1,2 +1,1 @@
-export const CHANGE_QUESTIONDATA = 'question/CHANGE_QUESTIONDATA';
-export const GET_QUESTION_LIST_DATA = 'question/GET_QUESTION_LIST_DATA';
+export const CHANGE_QUESTION_DETAIL= 'questiondetail/CHANGE_QUESTION_DETAIL';

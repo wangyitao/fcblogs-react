@@ -8,6 +8,7 @@ import {
     QuestionTitle,
     QuestionTags,
     TagItem,
+    StyledLink,
 
 } from '../style'
 import {
@@ -24,17 +25,19 @@ class List extends PureComponent {
                         return (
                             <QuestionItem key={index}>
                                 <QuestionTitle>
-                                    {item.get('title')}
-                                    <QuestionTags>
-                                        {
-                                            item.get('tags').map((tag, index) => (
-                                                <TagItem key={index}>
-                                                    {tag}
-                                                </TagItem>
-                                            ))
-                                        }
-                                    </QuestionTags>
+                                    <StyledLink to={'/question/' + item.get('id')} >
+                                        {item.get('title')}
+                                    </StyledLink>
                                 </QuestionTitle>
+                                <QuestionTags>
+                                    {
+                                        item.get('tags').map((tag, index) => (
+                                            <TagItem key={index}>
+                                                {tag}
+                                            </TagItem>
+                                        ))
+                                    }
+                                </QuestionTags>
                             </QuestionItem>
                         )
                     })
@@ -51,7 +54,7 @@ class List extends PureComponent {
 const myMapStateToProps = (state) => {
     return {
         questions: state.getIn(['question', 'questions']),
-        page: state.getIn(['question','questionsPage']),
+        page: state.getIn(['question', 'questionsPage']),
     }
 };
 

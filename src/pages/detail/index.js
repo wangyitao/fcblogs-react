@@ -11,10 +11,11 @@ import {
 
 class Detail extends PureComponent {
     render() {
+        const {title,content}=this.props;
         return (
             <DetailWrapper>
-                <Header>{this.props.title}</Header>
-                <Content dangerouslySetInnerHTML={{__html: this.props.content}}/>
+                <Header>{title}</Header>
+                <Content dangerouslySetInnerHTML={{__html: content}}/>
             </DetailWrapper>
         )
     }
