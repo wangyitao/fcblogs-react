@@ -1,6 +1,5 @@
 import React,{PureComponent,Fragment} from 'react';
 import connect from "react-redux/es/connect/connect";
-
 import SimpleMDE from 'simplemde';
 import marked from 'marked';
 import highlight from 'highlight.js';

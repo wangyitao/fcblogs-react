@@ -9,3 +9,8 @@ export const changeContent=(value)=>({
     type: constants.CHANGE_EDITOR_VALUE,
     editorValue: value,
 });
+
+export const saveChange=(savedValue)=>({
+    type: constants.SAVE_CHANGE,
+    savedValue: savedValue,
+});

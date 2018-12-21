@@ -43,4 +43,10 @@ export const QuestionContentDesAndAns = styled.div`
     margin: 20px auto;
 `;
 
+export const QuestionEditor = styled.div`
+    margin: 0 20px;
+    float: right;
+    cursor: pointer;
+`;
+
 

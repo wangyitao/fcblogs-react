@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import cookie from 'cookie';
 import SimpleMDEEditor from 'yt-simplemde-editor';
 import marked from 'marked';
 import Prism from 'prismjs'; // 这里使用 ~1.14.0 版本，1.15 之后的版本有bug
@@ -32,12 +31,11 @@ class MdEditor extends PureComponent {
     };
 
     render() {
-        const {changeContent,editorValue} =this.props;
+        const {changeContent, saveChange} = this.props;
 
-        console.log(editorValue);
         const editorProps = {
-            value: editorValue,
-            getMdeInstance: simplemde => {
+            value: this.props.editorContent,
+            getMdeInstance: (simplemde) => {
                 this.simplemde = simplemde;
             },
             onChange: (value) => {
@@ -49,14 +47,18 @@ class MdEditor extends PureComponent {
                 forceSync: true,
                 autosave: {
                     enabled: true,
-                    delay: 5000,
-                    uniqueId: 'article_content',
+                    delay: 1000,
+                    uniqueId: this.props.uniqueId,
                 },
                 renderingConfig: {
                     codeSyntaxHighlighting: true,
                 },
                 previewRender: this.renderMarkdown, // 自定义预览渲染
                 tabSize: 4,
+                hideIcons: [
+                    'unordered-list',
+                    'ordered-list',
+                ],
                 toolbar: [
                     'bold',
                     'italic',
@@ -66,8 +68,6 @@ class MdEditor extends PureComponent {
                     'code',
                     'table',
                     'horizontal-rule',
-                    'unordered-list',
-                    'ordered-list',
                     '|',
                     'link',
                     'image',
@@ -90,16 +90,18 @@ class MdEditor extends PureComponent {
                         className: 'fa fa-info-circle',
                         title: 'Markdown 语法！',
                     },
+                    {
+                        name: 'save_and_back',
+                        action(simplemde) {
+                            saveChange(simplemde.value());
+                            window.history.go(-1);
+                        },
+                        className: 'fa fa-save',
+                        title: '保存并返回'
+                    },
                 ],
             },
-            uploadOptions: {
-                uploadUrl: '/api/attachment/upload',
-                jsonFieldName: 'data.filename',
-                extraHeaders: {
-                    Accept: 'application/x.sheng.v1+json',
-                    'X-XSRF-TOKEN': cookie.parse(document.cookie)['XSRF-TOKEN'],
-                },
-            },
+
         };
 
         return (
@@ -109,22 +111,29 @@ class MdEditor extends PureComponent {
         )
     }
 
-    componentDidMount() {
 
+    componentDidMount() {
     }
+
 }
 
 const myMapStateToProps = (state) => {
     return {
-        editorValue: state.getIn(['component', 'editorValue'])
+        editorValue: state.getIn(['component', 'editorValue']),
+        savedValue: state.getIn(['component', 'savedValue']),
+        uniqueId: this.props.uniqueId,
+        editorContent: this.props.editorContent,
     }
 };
 
 const myMapDispatchToProps = (dispatch) => {
     return {
-        changeContent(value){
+        changeContent(value) {
             dispatch(actionCreators.changeContent(value))
         },
+        saveChange(editorValue) {
+            dispatch(actionCreators.saveChange(editorValue))
+        }
     }
 };
 
