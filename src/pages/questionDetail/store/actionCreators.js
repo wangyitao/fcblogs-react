@@ -21,24 +21,24 @@ export const getQuestionDetail = (id) => {
     }
 };
 
-const desEditorShow=(content,is_true)=>({
+const desEditorShow = (content, is_true) => ({
     type: constants.showDescriptionEditor,
     content: content,
-    is_description_editor_show:is_true,
+    is_description_editor_show: is_true,
 });
-const desAnswerShow=(content,is_true)=>({
-    type: constants.showDescriptionEditor,
+const desAnswerShow = (content, is_true) => ({
+    type: constants.showAnswerEditor,
     content: content,
-    is_answer_editor_show:is_true,
+    is_answer_editor_show: is_true,
 });
 
 
-export const changeDescriptionShow=(content, is_true, type)=>{
-    return (dispatch)=>{
-        if (type==='description'){
-            dispatch(desEditorShow(content,is_true))
-        }else if (type==='answer'){
-            dispatch(desAnswerShow(content,is_true))
+export const changeDescriptionShow = (content, is_true, type) => {
+    return (dispatch) => {
+        if (type === 'description') {
+            dispatch(desEditorShow(content, is_true))
+        } else if (type === 'answer') {
+            dispatch(desAnswerShow(content, is_true))
         }
     }
 

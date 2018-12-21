@@ -121,8 +121,6 @@ const myMapStateToProps = (state) => {
     return {
         editorValue: state.getIn(['component', 'editorValue']),
         savedValue: state.getIn(['component', 'savedValue']),
-        uniqueId: this.props.uniqueId,
-        editorContent: this.props.editorContent,
     }
 };
 
